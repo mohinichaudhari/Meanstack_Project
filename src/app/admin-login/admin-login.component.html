@@ -1,0 +1,89 @@
+<app-header></app-header>
+<div class="container-fluid">
+    <div class="row p-0 mt-5 justify-content-center">
+        <div class="col-6 p-0 ">
+            <div class="row bg-light mt-5 p-0" style="box-shadow: 2vh 2vh 2vh rgb(119, 117, 117) !important;">
+                <div class="col-md-6  p-0 d-flex justify-content-around align-items-center "
+                    style=" background: linear-gradient(57deg, #00C6A7 , #1E4D92 );">
+                    <h2 style="color: white;">Hello</h2>
+                </div>
+                <div class="col-md-6 p-0 mt-3" [formGroup]="loginform">
+                    <div class="row p-0 mr-3 justify-content-end">
+                        <div class="col-3 d-flex p-0 justify-content-end ">
+                            <button type="button" class="btn btn-outline-light btn-block mb-3"
+                                style=" background-color:   #1e7192 ;  border-radius:3vh; box-shadow: 1vh 1vh 1vh gray;"><a
+                                    routerLink="/admin-signup" style=" color:white; text-decoration: none;">Sign
+                                    Up</a></button>
+                        </div>
+                    </div>
+                    <div class="row p-0   justify-content-center ">
+                        <div class="col p-0 mt-4 d-flex justify-content-center">
+                            <h3>Login Here</h3>
+                        </div>
+                    </div>
+                    <div class="row justify-content-center">
+                        <div class="alert alert-danger w-50 "  role="alert" *ngIf="uiInvalidCredential">
+                            Wrong Credentials !!!
+                        </div>  
+                    </div>    
+                    <div class="row mr-3 p-0  mt-4"
+                        style=" border-style:groove; margin-left: 5vw; border-radius:5vh !important">
+                        <div class=" col-10 p-0 ">
+                            <input
+                                [class.is-invalid]="loginform.get('emailid').invalid && loginform.get('emailid').touched"
+                                type="text" class="form-control bg-transparent" placeholder="Email ID"
+                                style="border: none; outline: none !important;" formControlName="emailid" />
+                        </div>
+                        <div class=" col-2 p-0 d-flex align-items-center justify-content-center ">
+                            <fa-icon [icon]="faUser" style="color: rgba(128, 128, 128, 0.774);"></fa-icon>
+                        </div>
+                    </div>
+                    <div class="ml-5" *ngIf="(eid.invalid && eid.touched) || eid.dirty">
+                        <small *ngIf="eid.errors?.required" class="text-danger ml-3">Email ID is
+                            required</small>
+                        <!--question mark(?) is a safe navigation operator-->
+                        <small *ngIf="eid.errors?.pattern" class="text-danger ml-3">Please provide a valid Email
+                            ID</small>
+                    </div>
+                    <div class="row mt-3 mr-3 p-0 "
+                        style=" border-style:groove; margin-left: 5vw; border-radius:5vh !important">
+                        <div class="col-10 p-0">
+                            <input
+                                [class.is-invalid]="loginform.get('password').invalid && loginform.get('password').touched"
+                                type="password" placeholder="Password" class="form-control bg-transparent"
+                                style="border: none;" formControlName="password" />
+
+                        </div>
+                        <div class="col-2 p-0 d-flex align-items-center justify-content-center">
+                            <fa-icon [icon]="faUnlock" style="color: rgba(128, 128, 128, 0.774);"></fa-icon>
+                        </div>
+                    </div>
+                    <div class="ml-5" *ngIf="(pass.invalid &&pass.touched) || pass.dirty">
+                        <small *ngIf="pass.errors?.required" class="text-danger ml-3">Password is required</small>
+                        <small *ngIf="pass.errors?.pattern" class="text-danger ml-3">should be atleast 8 characters long
+                            and should contain one number,one character and one special
+                            character</small>
+                    </div>
+                    <div class="row p-0  ">
+                        <div class="col p-0 mt-3 " style="margin-left: 5vw;">
+                            <label>
+                                <input type="checkbox" checked="checked" name="remember"> Remember me
+                            </label>
+                        </div>
+                        <div class="col p-0  justify-content-end d-flex mr-4 mt-3 ">
+                            <a routerLink="/forgot" style="color: black; text-decoration: none;"
+                            >Forgot Password</a>
+                        </div>
+                    </div>
+                    <div class="row  mt-4 p-0  justify-content-center">
+                        <div class="col-4 d-flex align-items-center justify-content-center ">
+                            <button type="button" class="btn btn-outline-light btn-block mb-3"
+                                style="  background-color:   #1e7792 ; border-radius:3vh; box-shadow: 1vh 1vh 1vh gray;"
+                                [disabled]="!loginform.valid"(click)="loginProcessHere()">Login</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
